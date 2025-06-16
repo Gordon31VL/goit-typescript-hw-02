@@ -1,0 +1,6 @@
+.galleryImage {
+    object-fit: cover;
+    cursor: pointer;
+    width: 360px;
+    height: 200px;
+  }
