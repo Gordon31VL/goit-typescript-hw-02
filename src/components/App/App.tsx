@@ -8,8 +8,17 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import ImageModal from '../ImageModal/ImageModal';
 
+type Image = {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  alt_description: string;
+};
+
 function App() {
-  const accessKey = import.meta.env.VITE_ACCESS_KEY;
+  const accessKey = import.meta.env.VITE_ACCESS_KEY as string;
   const [images, setImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const [loader, setLoader] = useState(false)
@@ -17,21 +26,21 @@ function App() {
   const [loadMoreBtn, setLoadMoreBtn] = useState(false);
   const [query, setQuery] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
+  const [modalImage, setModalImage] = useState<Image | null>(null);
 
-  const searchImages = (topic) => {
+  const searchImages = (topic : string) => {
     setQuery(topic)
     setPage(1)
   }
 
-  const loadMorePages = (nextPage) => {
+  const loadMorePages = (nextPage: number) => {
     setPage(nextPage)
   }
 
-  const openModal = (image) => {
+  const openModal = (image: Image): void => {
     setModalImage(image);
     setModalIsOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setModalIsOpen(false);
