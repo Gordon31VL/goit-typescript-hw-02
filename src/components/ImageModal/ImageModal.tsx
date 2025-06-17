@@ -1,11 +1,5 @@
 import Modal from 'react-modal';
-
-type Image = {
-  urls: {
-    regular: string;
-  };
-  alt_description: string;
-};
+import { Image } from '../App/App';
 
 type ImageModalProps = {
   onOpen: boolean;

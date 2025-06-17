@@ -8,7 +8,7 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import ImageModal from '../ImageModal/ImageModal';
 
-type Image = {
+export type Image = {
   id: string;
   urls: {
     small: string;
@@ -17,9 +17,13 @@ type Image = {
   alt_description: string;
 };
 
+type ResponseType = {
+  results: Image[];
+}
+
 function App() {
   const accessKey = import.meta.env.VITE_ACCESS_KEY as string;
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<Image[]>([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const [loader, setLoader] = useState(false)
   const [page, setPage] = useState(1);
@@ -53,7 +57,7 @@ function App() {
       try {
         setErrorMessage(false);
         setLoader(true)
-        const response = await axios.get(`https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}&page=${page}&per_page=15`);
+        const response = await axios.get<ResponseType>(`https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}&page=${page}&per_page=15`);
         setImages(prevImages => page === 1 ? response.data.results : [...prevImages, ...response.data.results]);
       } catch (error) {
         console.error(error)

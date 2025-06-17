@@ -1,14 +1,8 @@
 import imageCardCss from "./ImageCard.module.css"
-
-type ImageStats = {
-    urls: {
-        small: string;
-    },
-    alt_description: string;
-}
+import { Image } from '../App/App';
 
 type ImageCardProps = {
-    imageStats: ImageStats;
+    imageStats: Image;
 }
 
 

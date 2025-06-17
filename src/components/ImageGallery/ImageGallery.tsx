@@ -1,15 +1,6 @@
 import ImageCard from "../ImageCard/ImageCard"
 import imageGalleryCss from "./ImageGallery.module.css"
-
-type Image = {
-    id: string;
-    urls: {
-      small: string;
-      regular: string;
-    };
-    alt_description: string;
-  };
-  
+import { Image } from '../App/App';
 
 type ImageGalleryProps = {
     images: Image[];
